@@ -1,0 +1,31 @@
+h1,
+a {
+    color: black;
+}
+
+#container_headline {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+a {
+    display: flex;
+    width: 250px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+}
+
+#container_anchors {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.anchor_active {
+    background-color: darkslategrey;
+    color: white;
+}
