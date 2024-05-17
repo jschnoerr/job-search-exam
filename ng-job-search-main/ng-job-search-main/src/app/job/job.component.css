@@ -1,3 +1,28 @@
-p {
+p, h3, h5{
     color: black;
+}
+
+img {
+    width: 75px;
+}
+
+#container_joblist{
+    width: 50%;
+    left: 25%;
+    position: relative;
+}
+
+.container_job {
+    display: flex;
+    align-items: center;
+}
+
+.container_jobinfo {
+    width: 80%;
+}
+
+span {
+    color: black;
+    width: 24px;
+    height: 24px;
 }
