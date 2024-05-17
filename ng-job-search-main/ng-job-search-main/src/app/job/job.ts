@@ -4,9 +4,12 @@ export interface Job {
     title: string;
     companyLogo: string;
     reference: string;
-    location: string;
-    industries: string;
-    types: string;
-    description: string;
-    publishDate: Date,
 }
+
+export interface DetailedJob extends Job {
+    location: string;
+    industries: string[];
+    types: string[];
+    description: string;
+    publishDate: string;
+  }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Job } from './job';
+import { DetailedJob, Job } from './job';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-    getJoblist(): Observable<Job> {
-      return this.http.get<Job>(this.apiURL);
+    getJob(): Observable<Job[]> {
+      return this.http.get<Job[]>(this.apiURL);
+    }
+
+    getDetailedJob(): Observable<DetailedJob[]>{
+      return this.http.get<DetailedJob[]>(this.apiURL)
     }
 }
