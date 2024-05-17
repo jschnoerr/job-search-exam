@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { JobComponent } from './job/job.component';
+import { JobFavoritesComponent } from './job-favorites/job-favorites.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'joblist', pathMatch: 'full' },
-    {path: 'joblist', component: JobComponent}
+    { path: 'favorites', component: JobFavoritesComponent },
+    { path: 'joblist', component: JobComponent },
+    { path: '*', redirectTo: 'joblist', pathMatch: 'full' }
 ];
