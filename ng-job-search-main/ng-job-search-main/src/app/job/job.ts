@@ -4,7 +4,6 @@ export interface Job {
     title: string;
     companyLogo: string;
     reference: string;
-    isFavorite: boolean;
 }
 
 export interface DetailedJob extends Job {

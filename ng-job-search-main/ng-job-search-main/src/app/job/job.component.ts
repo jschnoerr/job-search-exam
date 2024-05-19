@@ -14,6 +14,7 @@ export class JobComponent implements OnInit {
 
   jobList: Job[] = [];
   detailedJoblist: DetailedJob[] = [];
+  favoriteJobIDs: number[] = [];
 
   constructor(private jobService: JobService) { }
 
@@ -21,8 +22,7 @@ export class JobComponent implements OnInit {
     this.jobService.getJob().subscribe(
       (data: Job[]) => {
         this.jobList = data;
-        this.jobList.map((job)=>{
-          job.isFavorite = false;
+        this.jobList.map((job) => {
         })
       },
       (error) => {
@@ -37,10 +37,22 @@ export class JobComponent implements OnInit {
         console.log(error);
       }
     )
+    this.jobService.favoriteJobs$.subscribe(
+      (favoriteJobIDs: number[]) => {
+        this.favoriteJobIDs = favoriteJobIDs;
+      }
+    );
   }
 
-  toggleFavoriteJob(id: number){
-    const index = this.jobList.findIndex(job => job.id == id);
-    this.jobList[index].isFavorite = !this.jobList[index].isFavorite;
+  isFavorite(id: number): boolean {
+    return this.favoriteJobIDs.includes(id);
+  }
+
+  toggleFavoriteJob(id: number) {
+    if (this.isFavorite(id)) {
+      this.jobService.removeFavoriteJobID(id);
+    } else {
+      this.jobService.addFavoriteJobID(id);
+    }
   }
 }

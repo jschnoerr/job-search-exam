@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { DetailedJob, Job } from './job';
 
@@ -10,14 +10,28 @@ import { DetailedJob, Job } from './job';
 export class JobService {
 
   private apiURL = "/jobs";
+  private favoriteJobsSubject = new BehaviorSubject<number[]>([]);
+  favoriteJobs$: Observable<number[]> = this.favoriteJobsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
-    getJob(): Observable<Job[]> {
-      return this.http.get<Job[]>(this.apiURL);
-    }
+  getJob(): Observable<Job[]> {
+    return this.http.get<Job[]>(this.apiURL);
+  }
 
-    getDetailedJob(): Observable<DetailedJob[]>{
-      return this.http.get<DetailedJob[]>(this.apiURL)
-    }
+  getDetailedJob(): Observable<DetailedJob[]> {
+    return this.http.get<DetailedJob[]>(this.apiURL);
+  }
+
+  addFavoriteJobID(id: number): void {
+    this.favoriteJobsSubject.next([...this.favoriteJobsSubject.getValue(), id]);
+  }
+
+  removeFavoriteJobID(id: number): void {
+    this.favoriteJobsSubject.next(this.favoriteJobsSubject.getValue().filter(favId => favId !== id));
+  }
+
+  getFavoriteJobIDs(): number[] {
+    return this.favoriteJobsSubject.getValue();
+  }
 }

@@ -1,5 +1,5 @@
 <div id="container_joblist">
-    <ng-container *ngFor="let job of jobList">
+    <ng-container *ngFor="let job of jobList; let i = index">
         <div class="container_job">
             <img [src]="job.companyLogo" alt="">
             <div class="container_jobinfo">
@@ -7,7 +7,7 @@
                 <h5>Company: {{job.companyName}}</h5>
                 <h5>reference: {{job.reference}}</h5>
             </div>
-            <span [id]="'star-'+job.id" class="icon-star" (click)="toggleFavoriteJob(job.id)" [ngClass]="{'active': job.isFavorite}"></span>
+            <span [id]="'star-'+job.id" class="icon-star" (click)="toggleFavoriteJob(job.id)" [ngClass]="{'active': isFavorite(job.id)}"></span>
         </div>
     </ng-container>
 </div>
