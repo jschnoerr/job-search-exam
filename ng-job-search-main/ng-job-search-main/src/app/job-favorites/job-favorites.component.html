@@ -1,4 +1,15 @@
-<div id="container_favoriteJobs">
-    <h2 *ngIf="!favoriteJobIDs.length">No Favorite Jobs!</h2>
-    <h2>TEST</h2>
+<div id="container_favoriteJoblist">
+    <h2 *ngIf="favoriteJobIDs.length === 0; else favoriteJoblist">No Favorite Jobs!</h2>
+    <ng-template #favoriteJoblist>
+        <ng-container *ngFor="let job of jobList; let i = index">
+            <div id="container_favoriteJob" *ngIf="favoriteJobIDs.includes(job.id)">
+                <img [src]="job.companyLogo" alt="">
+                <div class="container_favorite-jobinfo">
+                    <h3>Jobtitel: {{job.title}}</h3>
+                    <h5>Company: {{job.companyName}}</h5>
+                    <h5>reference: {{job.reference}}</h5>
+                </div>
+            </div>
+        </ng-container>
+    </ng-template>
 </div>

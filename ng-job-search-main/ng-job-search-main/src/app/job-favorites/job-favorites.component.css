@@ -1,8 +1,34 @@
 h2 {
-    color: black;
+    text-align: center;
 }
 
-#container_favoriteJobs {
-    display: flex;
-    justify-content: center;
+#container_favoriteJoblist {
+    width: 50%;
+    left: 25%;
+    position: relative;
 }
+
+#container_favoriteJob {
+    display: flex;
+    align-items: center;
+}
+
+.container_favorite-jobinfo {
+    width: 80%;
+}
+
+/* 
+#container_joblist{
+    width: 50%;
+    left: 25%;
+    position: relative;
+}
+
+.container_job {
+    display: flex;
+    align-items: center;
+}
+
+.container_jobinfo {
+    width: 80%;
+} */

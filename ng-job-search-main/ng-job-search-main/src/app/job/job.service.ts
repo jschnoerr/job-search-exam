@@ -9,9 +9,10 @@ import { DetailedJob, Job } from './job';
 })
 export class JobService {
 
-  private apiURL = "/jobs";
   private favoriteJobsSubject = new BehaviorSubject<number[]>([]);
   favoriteJobs$: Observable<number[]> = this.favoriteJobsSubject.asObservable();
+  
+  private apiURL = "/jobs";
 
   constructor(private http: HttpClient) { }
 
