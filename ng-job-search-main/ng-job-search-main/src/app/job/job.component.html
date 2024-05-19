@@ -7,7 +7,7 @@
                 <h5>Company: {{job.companyName}}</h5>
                 <h5>reference: {{job.reference}}</h5>
             </div>
-            <span [id]="'star-'+job.id" class="icon-star"></span>
+            <span [id]="'star-'+job.id" class="icon-star" (click)="toggleFavoriteJob(job.id)" [ngClass]="{'active': job.isFavorite}"></span>
         </div>
     </ng-container>
 </div>

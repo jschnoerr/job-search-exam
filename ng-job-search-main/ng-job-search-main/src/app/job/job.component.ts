@@ -21,6 +21,9 @@ export class JobComponent implements OnInit {
     this.jobService.getJob().subscribe(
       (data: Job[]) => {
         this.jobList = data;
+        this.jobList.map((job)=>{
+          job.isFavorite = false;
+        })
       },
       (error) => {
         console.log(error);
@@ -34,6 +37,10 @@ export class JobComponent implements OnInit {
         console.log(error);
       }
     )
+  }
 
+  toggleFavoriteJob(id: number){
+    const index = this.jobList.findIndex(job => job.id == id);
+    this.jobList[index].isFavorite = !this.jobList[index].isFavorite;
   }
 }
