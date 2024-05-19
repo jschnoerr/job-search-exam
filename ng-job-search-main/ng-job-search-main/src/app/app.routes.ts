@@ -5,5 +5,5 @@ import { JobFavoritesComponent } from './job-favorites/job-favorites.component';
 export const routes: Routes = [
     { path: 'favorites', component: JobFavoritesComponent },
     { path: 'joblist', component: JobComponent },
-    { path: '*', redirectTo: 'joblist', pathMatch: 'full' }
+    { path: '**', redirectTo: 'joblist'}
 ];
