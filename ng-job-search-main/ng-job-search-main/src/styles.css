@@ -20,6 +20,14 @@ p, h2, h3, h5{
     color: black;
 }
 
+h3 {
+    cursor: pointer;
+}
+
+h3:hover {
+    text-decoration: underline;
+  }
+
 img {
     width: 75px;
 }
