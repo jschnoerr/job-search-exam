@@ -1,0 +1,19 @@
+#container_job-detailed {
+    width: 50%;
+    left: 25%;
+    position: relative;
+}
+
+button {
+    background-color: darkslategrey;
+}
+
+#container_logo-titel {
+    display: flex;
+    align-items: center;
+}
+
+h3:hover{
+    text-decoration: none;
+    cursor:default;
+}

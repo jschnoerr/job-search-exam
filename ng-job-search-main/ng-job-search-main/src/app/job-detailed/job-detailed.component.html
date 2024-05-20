@@ -1,1 +1,14 @@
-<p>job-detailed works!</p>
+<div id="container_job-detailed">
+    <button (click)="goBack()" type="button">Back</button>
+    <div id="container_logo-titel">
+        <img [src]="detailedJob?.companyLogo" alt="">
+        <h3><strong>Titel:</strong> {{detailedJob?.title}}</h3>
+    </div>
+    <h5><strong>Unternehmen:</strong> {{detailedJob?.companyName}}</h5>
+    <h5><strong>Art:</strong> {{detailedJob?.types}}</h5>
+    <h5><strong>Industrie:</strong> {{detailedJob?.industries}}</h5>
+    <h5><strong>Veröffentlicht:</strong> {{detailedJob?.publishDate}}</h5>
+    <h5><strong>Ort:</strong> {{detailedJob?.location}}</h5>
+    <h5><strong>Referenz:</strong> {{detailedJob?.reference}}</h5>
+    <p [innerHTML]="detailedJob?.description"></p>
+</div>

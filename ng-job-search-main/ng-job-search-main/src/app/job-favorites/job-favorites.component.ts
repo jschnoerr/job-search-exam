@@ -1,8 +1,9 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { JobService } from '../job/job.service';
-import { Job, DetailedJob } from '../job/job';
+import { Job } from '../job/job';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-job-favorites',
@@ -16,22 +17,28 @@ export class JobFavoritesComponent {
   jobList: Job[] = [];
   favoriteJobIDs: number[] = [];
 
+  private subscriptions: Subscription = new Subscription();
+
   constructor(private jobService: JobService) {
-    this.jobService.getJob().subscribe(
+    const jobListSub = this.jobService.getJoblist().subscribe(
       (data: Job[]) => {
         this.jobList = data;
-        this.jobList.map((job) => {
-        })
       },
       (error) => {
         console.log(error);
       }
     );
-    this.jobService.favoriteJobs$.subscribe(
+    const favoriteJobsSub = this.jobService.favoriteJobs$.subscribe(
       (favoriteJobIDs: number[]) => {
         this.favoriteJobIDs = favoriteJobIDs;
       }
     );
-   }
+    this.subscriptions.add(jobListSub);
+    this.subscriptions.add(favoriteJobsSub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
 }

@@ -22,12 +22,12 @@ export class JobService {
     this.favoriteJobs$ = this.favoriteJobsSubject.asObservable();
   }
 
-  getJob(): Observable<Job[]> {
+  getJoblist(): Observable<Job[]> {
     return this.http.get<Job[]>(this.apiURL);
   }
 
-  getDetailedJob(): Observable<DetailedJob[]> {
-    return this.http.get<DetailedJob[]>(this.apiURL);
+  getDetailedJob(id: number): Observable<DetailedJob> {
+    return this.http.get<DetailedJob>(`${this.apiURL}/${id}`);
   }
 
   addFavoriteJobID(id: number): void {

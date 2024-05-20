@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from './job.service';
-import { DetailedJob, Job } from './job';
+import { Job } from './job';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,35 +17,30 @@ import { RouterModule } from '@angular/router';
 export class JobComponent implements OnInit {
 
   jobList: Job[] = [];
-  detailedJoblist: DetailedJob[] = [];
   favoriteJobIDs: number[] = [];
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private jobService: JobService) { }
 
   ngOnInit(): void {
-    this.jobService.getJob().subscribe(
+    const jobListSub = this.jobService.getJoblist().subscribe(
       (data: Job[]) => {
         this.jobList = data;
-        this.jobList.map((job) => {
-        })
       },
       (error) => {
         console.log(error);
       }
     );
-    this.jobService.getDetailedJob().subscribe(
-      (data: DetailedJob[]) => {
-        this.detailedJoblist = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
-    this.jobService.favoriteJobs$.subscribe(
+
+    const favoriteJobsSub = this.jobService.favoriteJobs$.subscribe(
       (favoriteJobIDs: number[]) => {
         this.favoriteJobIDs = favoriteJobIDs;
       }
     );
+
+    this.subscriptions.add(jobListSub);
+    this.subscriptions.add(favoriteJobsSub);
   }
 
   isFavorite(id: number): boolean {
@@ -56,5 +53,9 @@ export class JobComponent implements OnInit {
     } else {
       this.jobService.addFavoriteJobID(id);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
