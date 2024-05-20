@@ -5,7 +5,9 @@
             <div id="container_favoriteJob" *ngIf="favoriteJobIDs.includes(job.id)">
                 <img [src]="job.companyLogo" alt="">
                 <div class="container_favorite-jobinfo">
-                    <h3>Jobtitel: {{job.title}}</h3>
+                    <a [routerLink]="['/joblist', job.id]">
+                        <h3>Jobtitel: {{job.title}}</h3>
+                    </a>
                     <h5>Company: {{job.companyName}}</h5>
                     <h5>reference: {{job.reference}}</h5>
                 </div>

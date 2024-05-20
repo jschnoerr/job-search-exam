@@ -2,11 +2,12 @@ import { Component} from '@angular/core';
 import { JobService } from '../job/job.service';
 import { Job, DetailedJob } from '../job/job';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-job-favorites',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './job-favorites.component.html',
   styleUrl: './job-favorites.component.css'
 })
