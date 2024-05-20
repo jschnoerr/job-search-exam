@@ -47,7 +47,7 @@ export class JobComponent implements OnInit {
     return this.favoriteJobIDs.includes(id);
   }
 
-  toggleFavoriteJob(id: number) {
+  toggleFavoriteJob(id: number): void {
     if (this.isFavorite(id)) {
       this.jobService.removeFavoriteJobID(id);
     } else {
