@@ -14,7 +14,6 @@ import { RouterModule } from '@angular/router';
 export class JobFavoritesComponent {
 
   jobList: Job[] = [];
-  detailedJoblist: DetailedJob[] = [];
   favoriteJobIDs: number[] = [];
 
   constructor(private jobService: JobService) {
@@ -28,14 +27,6 @@ export class JobFavoritesComponent {
         console.log(error);
       }
     );
-    this.jobService.getDetailedJob().subscribe(
-      (data: DetailedJob[]) => {
-        this.detailedJoblist = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
     this.jobService.favoriteJobs$.subscribe(
       (favoriteJobIDs: number[]) => {
         this.favoriteJobIDs = favoriteJobIDs;
