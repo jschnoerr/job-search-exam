@@ -10,11 +10,17 @@ import { DetailedJob, Job } from './job';
 export class JobService {
 
   private favoriteJobsSubject = new BehaviorSubject<number[]>([]);
-  favoriteJobs$: Observable<number[]> = this.favoriteJobsSubject.asObservable();
+  favoriteJobs$: Observable<number[]>;
   
   private apiURL = "/jobs";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    const storedFavoriteJobIDs = sessionStorage.getItem('favoriteJobIDs');
+    const initialFavoriteJobIDs = storedFavoriteJobIDs ? JSON.parse(storedFavoriteJobIDs) : [];
+
+    this.favoriteJobsSubject = new BehaviorSubject<number[]>(initialFavoriteJobIDs);
+    this.favoriteJobs$ = this.favoriteJobsSubject.asObservable();
+  }
 
   getJob(): Observable<Job[]> {
     return this.http.get<Job[]>(this.apiURL);
@@ -26,13 +32,19 @@ export class JobService {
 
   addFavoriteJobID(id: number): void {
     this.favoriteJobsSubject.next([...this.favoriteJobsSubject.getValue(), id]);
+    this.saveFavoriteJobIDs(this.favoriteJobsSubject.getValue());
   }
 
   removeFavoriteJobID(id: number): void {
     this.favoriteJobsSubject.next(this.favoriteJobsSubject.getValue().filter(favId => favId !== id));
+    this.saveFavoriteJobIDs(this.favoriteJobsSubject.getValue());
   }
 
   getFavoriteJobIDs(): number[] {
     return this.favoriteJobsSubject.getValue();
+  }
+
+  private saveFavoriteJobIDs(favoriteJobIDs: number[]): void {
+    sessionStorage.setItem('favoriteJobIDs', JSON.stringify(favoriteJobIDs));
   }
 }
