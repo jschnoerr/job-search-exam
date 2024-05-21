@@ -9,12 +9,16 @@ import { DetailedJob, Job } from '../job/job.interface';
 })
 export class JobService {
 
+  /*
+  For functionality, i chose the BehaviorSubject to update the favorite jobs. In reality,
+  another option might have been chosen to keep the declarative approach of RxJS.
+  */
   private favoriteJobsSubject = new BehaviorSubject<number[]>([]);
   favoriteJobs$: Observable<number[]>;
-  
+
   private apiURL = "/jobs";
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     const storedFavoriteJobIDs = sessionStorage.getItem('favoriteJobIDs');
     const initialFavoriteJobIDs = storedFavoriteJobIDs ? JSON.parse(storedFavoriteJobIDs) : [];
 
@@ -35,6 +39,7 @@ export class JobService {
     this.saveFavoriteJobIDs(this.favoriteJobsSubject.getValue());
   }
 
+  // filter the favorite Job array to get a new array without the clicked job (ausfiltern)
   removeFavoriteJobID(id: number): void {
     this.favoriteJobsSubject.next(this.favoriteJobsSubject.getValue().filter(favId => favId !== id));
     this.saveFavoriteJobIDs(this.favoriteJobsSubject.getValue());

@@ -12,6 +12,10 @@ import { Subscription } from 'rxjs';
 })
 export class JobDetailedComponent implements OnInit {
 
+  /*
+  ComponentInputBinding to get the current ID in the URL, 
+  so the component knows which DetailedJob to get and display.
+  */
   @Input()
   id!: number;
 
@@ -32,6 +36,7 @@ export class JobDetailedComponent implements OnInit {
   }
 
   goBack(): void {
+    // LocationService as an alternative
     window.history.back();
   }
 
