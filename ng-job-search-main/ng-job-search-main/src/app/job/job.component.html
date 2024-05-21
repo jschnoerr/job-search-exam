@@ -3,7 +3,7 @@
         <div class="container_job">
             <img [src]="job.companyLogo" alt="">
             <div class="container_jobinfo">
-                <a [routerLink]="['/joblist', job.id]">
+                <a [routerLink]="['/jobs', job.id]">
                     <h3>Jobtitel: {{job.title}}</h3>
                 </a>
                 <h5>Company: {{job.companyName}}</h5>
