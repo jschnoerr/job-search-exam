@@ -27,9 +27,6 @@ export class JobComponent implements OnInit {
     const jobListSub = this.jobService.getJoblist().subscribe(
       (data: Job[]) => {
         this.jobList = data;
-      },
-      (error) => {
-        console.log(error);
       }
     );
 
