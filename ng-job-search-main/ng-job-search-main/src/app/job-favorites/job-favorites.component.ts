@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { JobService } from '../job/job.service';
-import { Job } from '../job/job';
+import { Job } from '../job/job.interface';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';

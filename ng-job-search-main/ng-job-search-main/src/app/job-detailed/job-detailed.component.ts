@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { JobService } from '../job/job.service';
-import { DetailedJob } from '../job/job';
+import { DetailedJob } from '../job/job.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
