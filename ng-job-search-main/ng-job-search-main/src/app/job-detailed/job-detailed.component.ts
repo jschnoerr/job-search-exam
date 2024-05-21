@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { JobService } from '../job/job.service';
+import { JobService } from '../shared/job.service';
 import { DetailedJob } from '../job/job.interface';
 import { Subscription } from 'rxjs';
 

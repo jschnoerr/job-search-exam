@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { DetailedJob, Job } from './job.interface';
+import { DetailedJob, Job } from '../job/job.interface';
 
 @Injectable({
   providedIn: 'root'

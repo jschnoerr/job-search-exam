@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { JobService } from '../job/job.service';
+import { JobService } from '../shared/job.service';
 import { Job } from '../job/job.interface';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
