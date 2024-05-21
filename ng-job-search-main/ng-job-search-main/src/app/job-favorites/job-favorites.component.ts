@@ -25,7 +25,7 @@ export class JobFavoritesComponent {
         this.jobList = data;
       }
     );
-    const favoriteJobsSub = this.jobService.favoriteJobs$.subscribe(
+    const favoriteJobsSub = this.jobService.getFavoriteJobs().subscribe(
       (favoriteJobIDs: number[]) => {
         this.favoriteJobIDs = favoriteJobIDs;
       }

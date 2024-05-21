@@ -40,6 +40,10 @@ export class JobService {
     this.saveFavoriteJobIDs(this.favoriteJobsSubject.getValue());
   }
 
+  getFavoriteJobs(): Observable<number[]> {
+    return this.favoriteJobs$;
+  }
+
   getFavoriteJobIDs(): number[] {
     return this.favoriteJobsSubject.getValue();
   }
