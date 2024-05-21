@@ -25,9 +25,6 @@ export class JobDetailedComponent implements OnInit {
     const detailedJobSub = this.jobService.getDetailedJob(this.id).subscribe(
       (data: DetailedJob) => {
         this.detailedJob = data;
-      },
-      (error) => {
-        console.log(error);
       }
     );
 
